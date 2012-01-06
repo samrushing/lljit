@@ -3,8 +3,8 @@ LLJIT
 =====
 
 This is a minimal interface to the JIT capability of LLVM_, exposed
-via a Cython_ module.  It allows you to load either LLVM assembly code
-or LLVM 'bitcode' and execute it via LLVM's ExecutionEngine. (i.e., JIT).
+via a Cython_ module.  It allows you to load either LLVM assembly_ code
+or LLVM bitcode_ and execute it via LLVM's ExecutionEngine. (i.e., JIT).
 
 Motivation
 ----------
@@ -36,5 +36,40 @@ Sample Usage
   print f(5)
   print f(10)
 
+Bitcode
+-------
+
+I've included a module for parsing bitcode_ files.  There are still problems,
+it is interpreting the insn sequences incorrectly, but the major difficulty
+of parsing the bit stream correctly has been cracked.  I may eventually add
+an ability to *write* bitcode (e.g., for the backend of a compiler).
+
+LLVM Hints
+----------
+
+If you're new to LLVM, here are some quick hints to get you started.
+
+Compile a C file to llvm assembly:
+
+  $ clang -emit-llvm -S t.c
+  [or]
+  $ llvm-gcc -emit-llvm -S t.c
+
+Optimize some llvm assembly:
+
+  $ opt -std-compile-opts t.s -S
+
+Compile to native code:
+
+  $ cat t.s | opt -std-compile-opts | llc
+
+Compile to a different architecture:
+
+  $ cat t.s | opt -std-compile-opts | llc -march=arm
+
+
 .. _Cython: http://cython.org/
 .. _LLVM: http://llvm.org/
+.. _bitcode: http://llvm.org/docs/BitCodeFormat.html
+.. _assembly: http://llvm.org/docs/LangRef.html
+
