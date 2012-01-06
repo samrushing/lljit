@@ -13,6 +13,24 @@ A much more complete interface to llvm exists, called llvm-py_.  However,
 at the time of this writing (LLVM 3.0) the LLVM API has changed enough that
 updating llvm-py is a non-trivial project.
 
+Building
+--------
+
+You'll need LLVM 3.0+ to build.  It probably wouldn't be difficult to make
+this work with an older LLVM but I haven't bothered to try.
+
+You may need to change the path of an include file in lljit/llvm.pxd, see
+the comments if you get this error:
+
+  lljit/lljit.cpp:238:39: fatal error: llvm/Support/TargetSelect.h: No such file or directory
+
+The LLVM API is a moving target!
+
+Build/install:
+
+  $ python setup.py build
+  $ sudo python setup.py install
+
 Sample Usage
 ------------
 
