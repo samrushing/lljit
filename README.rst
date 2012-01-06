@@ -9,7 +9,7 @@ or LLVM bitcode_ and execute it via LLVM's ExecutionEngine. (i.e., JIT).
 Motivation
 ----------
 
-A much more complete interface to llvm exists, called llvm-py.  However,
+A much more complete interface to llvm exists, called llvm-py_.  However,
 at the time of this writing (LLVM 3.0) the LLVM API has changed enough that
 updating llvm-py is a non-trivial project.
 
@@ -74,4 +74,5 @@ Compile to a different architecture:
 .. _LLVM: http://llvm.org/
 .. _bitcode: http://llvm.org/docs/BitCodeFormat.html
 .. _assembly: http://llvm.org/docs/LangRef.html
+.. _llvm-py: http://www.mdevan.org/llvm-py/
 
