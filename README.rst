@@ -69,10 +69,11 @@ LLVM Hints
 
 If you're new to LLVM, here are some quick hints to get you started.
 
-Compile a C file to llvm assembly:
+Compile a C file to llvm assembly::
 
-  *$ clang -emit-llvm -S t.c [or]
-  *$ llvm-gcc -emit-llvm -S t.c
+  $ clang -emit-llvm -S t.c [or]
+  [or]
+  $ llvm-gcc -emit-llvm -S t.c
 
 Optimize some llvm assembly:
 
