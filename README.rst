@@ -28,8 +28,8 @@ The LLVM API is a moving target!
 
 Build/install:
 
-  |$ python setup.py build
-  |$ sudo python setup.py install
+  1. $ python setup.py build
+  2. $ sudo python setup.py install
 
 Sample Usage
 ------------
@@ -71,21 +71,20 @@ If you're new to LLVM, here are some quick hints to get you started.
 
 Compile a C file to llvm assembly:
 
-  |$ clang -emit-llvm -S t.c
-  |[or]
-  |$ llvm-gcc -emit-llvm -S t.c
+  *$ clang -emit-llvm -S t.c [or]
+  *$ llvm-gcc -emit-llvm -S t.c
 
 Optimize some llvm assembly:
 
-  |$ opt -std-compile-opts t.s -S
+  $ opt -std-compile-opts t.s -S
 
 Compile to native code:
 
-  |$ cat t.s | opt -std-compile-opts | llc
+  $ cat t.s | opt -std-compile-opts | llc
 
 Compile to a different architecture:
 
-  |$ cat t.s | opt -std-compile-opts | llc -march=arm
+  $ cat t.s | opt -std-compile-opts | llc -march=arm
 
 
 .. _Cython: http://cython.org/
