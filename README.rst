@@ -16,6 +16,8 @@ updating llvm-py is a non-trivial project.
 Sample Usage
 ------------
 
+Lo,::
+
   import lljit
   
   # calling an external function...
