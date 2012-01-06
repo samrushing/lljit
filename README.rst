@@ -71,7 +71,7 @@ If you're new to LLVM, here are some quick hints to get you started.
 
 Compile a C file to llvm assembly::
 
-  $ clang -emit-llvm -S t.c [or]
+  $ clang -emit-llvm -S t.c
   [or]
   $ llvm-gcc -emit-llvm -S t.c
 
