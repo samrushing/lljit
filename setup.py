@@ -6,9 +6,22 @@ from Cython.Distutils import build_ext
 # we need compiler flags from llvm-config
 
 import subprocess
-cxxflags = subprocess.check_output (['llvm-config', '--cxxflags']).strip().split()
-ldflags  = subprocess.check_output (['llvm-config', '--ldflags']).strip().split()
-linkargs = subprocess.check_output (['llvm-config', '--libs', 'core', 'bitreader', 'jit', 'native', 'asmparser']).strip().split()
+
+# 'borrowed' from 2.7 subprocess.py
+def check_output(*popenargs, **kwargs):
+    process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
+    output, unused_err = process.communicate()
+    retcode = process.poll()
+    if retcode:
+        cmd = kwargs.get("args")
+        if cmd is None:
+            cmd = popenargs[0]
+        raise CalledProcessError(retcode, cmd, output=output)
+    return output
+
+cxxflags = check_output (['llvm-config', '--cxxflags']).strip().split()
+ldflags  = check_output (['llvm-config', '--ldflags']).strip().split()
+linkargs = check_output (['llvm-config', '--libs', 'core', 'bitreader', 'jit', 'native', 'asmparser']).strip().split()
 
 ext = Extension (
     'lljit.lljit',
