@@ -3,13 +3,15 @@
 # playing around with tagged integers here.
 # in Irken I set the lowest bit to indicate an 'integer', trying to
 #   see if I can model that directly in llvm.
+#
+# note: doesn't seem to work the way I want, either 'packed' or not.
 
 import lljit
 
 asm = """
-%int_t = type { i63, i1 }
+%int_t = type <{ i63, i1 }>
 
-@con0 = global %int_t { i63 3141, i1 1 }
+@con0 = global %int_t <{ i63 3141, i1 1 }>
 
 define %int_t @tagadd(%int_t %a, %int_t %b) {
   %av = extractvalue %int_t %a, 0
