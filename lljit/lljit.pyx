@@ -90,6 +90,8 @@ cdef class module:
     def function (self, name):
         return function (self, name)
 
+from libc.stdint cimport uintptr_t
+
 cdef class function:
     cdef module mod
     cdef iifun * code_pointer
@@ -110,3 +112,6 @@ cdef class function:
         if not self.code_pointer:
             raise LLVMError ("no code pointer!")
         return self.code_pointer (arg)
+
+    def get_code_pointer (self):
+        return long (<uintptr_t>self.code_pointer)
