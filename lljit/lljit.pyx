@@ -15,6 +15,18 @@ cdef LLVMContext * context = new LLVMContext()
 class LLVMError (Exception):
     pass
 
+def load_library_permanently (name):
+    cdef string * error = new string()
+    cdef bint result
+    try:
+        result = DynamicLibrary_LoadLibraryPermanently (name, error)
+        if result:
+            raise LLVMError (error.c_str())
+        else:
+            return result
+    finally:
+        del error
+
 ctypedef int iifun (int)
 
 cdef class sm_diagnostic:
