@@ -33,6 +33,9 @@ cdef extern from "llvm/Support/MemoryBuffer.h" namespace "llvm":
     #   namespace in the override).
     cdef MemoryBuffer * MemoryBuffer_getMemBuffer "llvm::MemoryBuffer::getMemBuffer" (string)
 
+cdef extern from "llvm/Support/DynamicLibrary.h" namespace "llvm":
+    cdef bint DynamicLibrary_LoadLibraryPermanently "llvm::sys::DynamicLibrary::LoadLibraryPermanently" (char * name, string * ErrMsg)
+
 cdef extern from "llvm/Bitcode/ReaderWriter.h" namespace "llvm":
     cdef Module * ParseBitcodeFile (MemoryBuffer * Buffer, LLVMContext Context, string * ErrMsg)
 
